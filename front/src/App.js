@@ -1,11 +1,12 @@
+import Header from "./components/Header/Header";
 import Login from "./components/Login";
-import Movements from "./components/Movements/Movements";
+import LastMovements from "./components/LastMovements/LastMovements";
 
 function App() {
   return (
-    <div>
-      <Login />
-      <Movements />
+    <div c>
+      <Header />
+      <LastMovements />
     </div>
   );
 }

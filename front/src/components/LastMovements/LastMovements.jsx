@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { format } from "date-fns";
 
-function Movements() {
+function LastMovements() {
   const [movements, setMovements] = useState([]);
 
   useEffect(() => {
@@ -56,4 +56,4 @@ function Movements() {
   );
 }
 
-export default Movements;
+export default LastMovements;
