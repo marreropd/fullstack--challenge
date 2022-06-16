@@ -21,7 +21,19 @@ async function store(req, res) {
   res.json(movemet);
 }
 
-async function update(req, res) {}
+async function update(req, res) {
+  const id = req.params.id;
+  const { amount, type, description } = req.body;
+  const movement = await Movement.update(
+    { amount: amount, description: description, type: type },
+    {
+      where: {
+        id: id,
+      },
+    },
+  );
+  res.json(movement);
+}
 
 async function destroy(req, res) {
   const id = req.params.id;
