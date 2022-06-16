@@ -1,0 +1,9 @@
+.income{
+    border-radius: 10px;
+    background-color: rgba(28, 166, 7, 0.374);
+}
+
+.outcome{
+    border-radius: 10px;
+    background-color: rgba(166, 49, 7, 0.374);
+}

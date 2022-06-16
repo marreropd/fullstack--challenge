@@ -1,6 +1,8 @@
+import styles from "./Movements.css";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+
 function Movements() {
   const [movements, setMovements] = useState([]);
 
@@ -28,12 +30,21 @@ function Movements() {
             <div
               className={
                 movement.type === "Ingreso"
-                  ? "shadow bg-success"
-                  : "shadow bg-danger"
+                  ? "shadow income p-3 my-1"
+                  : "shadow outcome p-3 my-1"
               }
             >
-              <span>Monto: {movement.amount} </span>
-              <span>descripcion: {movement.description}</span>
+              <div className="d-flex align-items-center">
+                {movement.type === "Ingreso" ? (
+                  <i class="bi bi-plus-circle-fill mx-2 fs-3"></i>
+                ) : (
+                  <i class="bi bi-dash-circle-fill mx-2 fs-3"></i>
+                )}
+                <div className="d-flex flex-column">
+                  <span className="h3 mb-0">${movement.amount} </span>
+                  <span className="mx-3">{movement.description}</span>
+                </div>
+              </div>
             </div>
           </>
         ))}

@@ -1,7 +1,8 @@
 const { Movement } = require("../models");
 
 async function index(req, res) {
-  const movements = await Movement.findAll();
+  const movements = await Movement.findAll({ order: [["createdAt", "DESC"]] });
+
   res.json(movements);
 }
 
