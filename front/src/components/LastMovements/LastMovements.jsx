@@ -1,28 +1,8 @@
-import styles from "./Movements.css";
-import React, { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
+import styles from "./LastMovements.css";
+import React from "react";
 import { format } from "date-fns";
 
-function LastMovements() {
-  const [movements, setMovements] = useState([]);
-
-  useEffect(() => {
-    getMovements();
-  }, []);
-
-  async function getMovements() {
-    try {
-      const response = await axios({
-        method: "GET",
-        url: `http://localhost:3000/movements`,
-      });
-      setMovements(response.data);
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  }
-
+function LastMovements({ movements }) {
   return (
     <div className="container">
       {movements &&
