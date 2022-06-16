@@ -4,10 +4,14 @@ import LastMovements from "./components/LastMovements/LastMovements";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import CreateMovement from "./components/CreateMovement/CreateMovement";
 
 function App() {
   const [movements, setMovements] = useState([]);
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     getMovements();
   }, []);
@@ -18,15 +22,17 @@ function App() {
         method: "GET",
         url: `http://localhost:3000/movements`,
       });
-      setMovements(response.data);
+      response.data && setMovements(response.data);
     } catch (error) {
       console.log("Error: ", error);
     }
   }
   return (
-    <div c>
+    <div>
       <Header movements={movements} />
+      <button onClick={handleShow}></button>
       <LastMovements movements={movements} />
+      <CreateMovement show={show} handleClose={handleClose} />
     </div>
   );
 }
