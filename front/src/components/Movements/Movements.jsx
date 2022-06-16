@@ -2,6 +2,7 @@ import styles from "./Movements.css";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import { format } from "date-fns";
 
 function Movements() {
   const [movements, setMovements] = useState([]);
@@ -36,14 +37,17 @@ function Movements() {
             >
               <div className="d-flex align-items-center">
                 {movement.type === "Ingreso" ? (
-                  <i class="bi bi-plus-circle-fill mx-2 fs-3"></i>
+                  <i class="bi bi-plus-circle-fill mx-3 fs-3"></i>
                 ) : (
-                  <i class="bi bi-dash-circle-fill mx-2 fs-3"></i>
+                  <i class="bi bi-dash-circle-fill mx-3 fs-3"></i>
                 )}
                 <div className="d-flex flex-column">
                   <span className="h3 mb-0">${movement.amount} </span>
-                  <span className="mx-3">{movement.description}</span>
+                  <span className="">{movement.description}</span>
                 </div>
+                <span className="date ms-auto align-self-end">
+                  {format(new Date(movement.createdAt), "yyyy/MM/dd kk:mm:ss")}
+                </span>
               </div>
             </div>
           </>

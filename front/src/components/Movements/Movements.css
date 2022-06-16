@@ -7,3 +7,7 @@
     border-radius: 10px;
     background-color: rgba(166, 49, 7, 0.374);
 }
+
+.date{
+    font-size: smaller;
+}
