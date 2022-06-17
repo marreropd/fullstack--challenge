@@ -5,9 +5,12 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import CreateMovement from "./components/CreateMovement/CreateMovement";
+import ActionBotton from "./components/ActionBotton/ActionBotton";
+import AddMovement from "./components/AddMovement/AddMovement";
 
 function App() {
   const [movements, setMovements] = useState([]);
+  const [modalShow, setModalShow] = React.useState(false);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -30,8 +33,11 @@ function App() {
   return (
     <div>
       <Header movements={movements} />
-      <button onClick={handleShow}></button>
+      <div show={modalShow} onClick={() => setModalShow(true)}>
+        <ActionBotton />
+      </div>
       <LastMovements movements={movements} />
+      <AddMovement show={modalShow} onHide={() => setModalShow(false)} />
       <CreateMovement show={show} handleClose={handleClose} />
     </div>
   );
