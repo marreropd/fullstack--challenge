@@ -6,7 +6,10 @@ function Header({ movements }) {
     <div className="bg-dark py-2 sticky-top">
       <div className="container d-flex justify-content-between">
         <div className="d-flex flex-column">
-          <i id="piggy-logo" class="bi bi-piggy-bank ms-5 mb-0 piggy-logo"></i>
+          <i
+            id="piggy-logo"
+            className="bi bi-piggy-bank ms-5 mb-0 piggy-logo"
+          ></i>
           <h2 id="title" className="mt-0">
             Piggy Safe
           </h2>

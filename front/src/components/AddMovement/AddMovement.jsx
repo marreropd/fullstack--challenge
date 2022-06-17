@@ -1,8 +1,39 @@
+import axios from "axios";
 import React from "react";
 import { Modal } from "react-bootstrap";
 
-function AddMovement(props) {
+function AddMovement(props, setMovements) {
   const [modalShow, setModalShow] = React.useState(false);
+
+  const [data, setData] = React.useState({
+    type: "",
+    amount: 0,
+    decription: "",
+  });
+
+  const handleSubmit = async (e) => {
+    console.log("se hizo submit");
+    e.preventDefault();
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "http://localhost:3000/movements",
+        data: data,
+      });
+      console.log(response.data);
+      (await response) && props.setMovements(response.data);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div>
       <Modal
@@ -17,39 +48,63 @@ function AddMovement(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="mb-3">
-              <label for="select" className="form-label">
+              <label htmlFor="select" className="form-label">
                 Tipo de Movimiento
               </label>
               <select
                 id="select"
-                class="form-select"
+                className="form-select"
                 aria-label="Default select example"
+                name="type"
+                onChange={handleInputChange}
               >
                 <option value="Ingreso">Ingreso</option>
                 <option value="Egreso">Egreso</option>
               </select>
             </div>
             <div className="mb-3">
-              <label for="description" className="form-label">
+              <label hmtlFor="description" className="form-label">
                 Descripción del Movimiento
               </label>
-              <input type="text" className="form-control" id="description" />
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                name="description"
+                onChange={handleInputChange}
+              />
             </div>
             <div className="mb-3">
               <label for="amount" className="form-label">
                 Monto en $
               </label>
-              <input type="number" className="form-control" id="amount" />
+              <input
+                type="number"
+                className="form-control"
+                id="amount"
+                name="amount"
+                onChange={handleInputChange}
+              />
             </div>
+            <button className="btn my-3" type="submit">
+              Submit
+            </button>
           </form>
+
+          <div>
+            <div className="shadow p-3  rounded">
+              <div className="d-flex align-items-center">
+                <div className="d-flex flex-column">
+                  <span className="h3 mb-0">${data.amount} </span>
+                  <span className="">{data.description}</span>
+                </div>
+                <div className="ms-auto px-5">{data.type}</div>
+              </div>
+            </div>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
