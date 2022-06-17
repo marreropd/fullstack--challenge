@@ -1,12 +1,12 @@
 import { combineReducers, createStore } from "redux";
 import userReducer from "./reducers/userReducer";
-import tweetReducer from "./reducers/movementReducer";
+import movementReducer from "./reducers/movementReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
 const rootReducer = combineReducers({
   user: userReducer,
-  movement: movementReducer,
+  movements: movementReducer,
 });
 
 const persistConfig = {

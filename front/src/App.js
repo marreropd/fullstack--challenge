@@ -1,26 +1,17 @@
 import Header from "./components/Header/Header";
-import Login from "./components/Login";
 import LastMovements from "./components/LastMovements/LastMovements";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
-import ActionBotton from "./components/ActionBotton/ActionBotton";
-import AddMovement from "./components/AddMovement/AddMovement";
+import { useDispatch, useSelector } from "react-redux";
+import movementActions from "./redux/movementActions";
 
 function App() {
-  const [movements, setMovements] = useState([]);
-  const [modalShow, setModalShow] = React.useState(false);
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
+  const store = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getMovements();
   }, []);
-
-  useEffect(() => {
-    console.log("se ha actualizado ", movements);
-  }, [movements]);
 
   async function getMovements() {
     try {
@@ -28,27 +19,18 @@ function App() {
         method: "GET",
         url: `http://localhost:3000/movements`,
       });
-      (await response.data) && setMovements(response.data);
+      response.data && dispatch(movementActions.storeMovements(response.data));
     } catch (error) {
       console.log("Error: ", error);
     }
   }
+
   return (
     <div>
-      {movements && (
-        <div>
-          <Header movements={movements} />
-          <div show={modalShow} onClick={() => setModalShow(true)}>
-            <ActionBotton />
-          </div>
-          <LastMovements movements={movements} />
-          <AddMovement
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            setMovements={setMovements}
-          />
-        </div>
-      )}
+      <div>
+        <Header />
+        <LastMovements />
+      </div>
     </div>
   );
 }

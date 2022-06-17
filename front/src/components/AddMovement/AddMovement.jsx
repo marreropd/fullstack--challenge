@@ -1,9 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { Modal } from "react-bootstrap";
+import { useSelector, connect, useDispatch } from "react-redux";
+import movementActions from "../../redux/movementActions";
 
-function AddMovement(props, setMovements) {
+function AddMovement(props) {
+  const store = useSelector((state) => state);
   const [modalShow, setModalShow] = React.useState(false);
+
+  const dispatch = useDispatch();
 
   const [data, setData] = React.useState({
     type: "",
@@ -20,8 +25,7 @@ function AddMovement(props, setMovements) {
         url: "http://localhost:3000/movements",
         data: data,
       });
-      console.log(response.data);
-      (await response) && props.setMovements(response.data);
+      (await response.data) && dispatch(movementActions.create(response.data));
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -60,12 +64,15 @@ function AddMovement(props, setMovements) {
                 name="type"
                 onChange={handleInputChange}
               >
+                <option value="" defaultChecked>
+                  Seleccionar
+                </option>
                 <option value="Ingreso">Ingreso</option>
                 <option value="Egreso">Egreso</option>
               </select>
             </div>
             <div className="mb-3">
-              <label hmtlFor="description" className="form-label">
+              <label htmlFor="description" className="form-label">
                 Descripción del Movimiento
               </label>
               <input
@@ -77,7 +84,7 @@ function AddMovement(props, setMovements) {
               />
             </div>
             <div className="mb-3">
-              <label for="amount" className="form-label">
+              <label htmlFor="amount" className="form-label">
                 Monto en $
               </label>
               <input
@@ -110,4 +117,4 @@ function AddMovement(props, setMovements) {
   );
 }
 
-export default AddMovement;
+export default connect(null, { movementActions })(AddMovement);

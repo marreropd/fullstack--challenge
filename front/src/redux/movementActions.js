@@ -1,5 +1,5 @@
-const tweetActions = {
-  storeTweets: function (data) {
+const movementActions = {
+  storeMovements: function (data) {
     return { type: "STORE_MOVEMENT", payload: data };
   },
   create: function (data) {
@@ -14,4 +14,4 @@ const tweetActions = {
   },
 };
 
-export default tweetActions;
+export default movementActions;
