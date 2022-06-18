@@ -31,6 +31,18 @@ function App() {
         <Header />
         <LastMovements />
       </div>
+      <cite title="">
+        {" "}
+        <a
+          className="pinter text-dark"
+          rel="noreferrer"
+          href="https://www.linkedin.com/in/marrero-pablo/"
+          target="_blank"
+        >
+          {" "}
+          by Pablo Marrero
+        </a>
+      </cite>
     </div>
   );
 }
