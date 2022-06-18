@@ -1,4 +1,6 @@
 import React from "react";
+import GetBalance from "../GetBalance";
+
 import styles from "./Header.css";
 
 function Header({ movements }) {
@@ -16,7 +18,9 @@ function Header({ movements }) {
           <p className="piggy-logo">The best app to control your expenses</p>
         </div>
         <div className="d-flex flex-column mt-5">
-          <h4 className="text-white text-end">Balance: $1254245</h4>
+          <h4 className="text-white text-end">
+            Balance: <GetBalance />
+          </h4>
           <h5 className="text-end text-white">Ultimos Movimientos:</h5>
         </div>
       </div>
