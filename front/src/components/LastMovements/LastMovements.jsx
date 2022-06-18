@@ -9,8 +9,12 @@ import ActionBotton from "../ActionBotton/ActionBotton";
 function LastMovements({ setMovements }) {
   const store = useSelector((state) => state);
   const movements = store.movements;
+
+  //modal states
   const [modalShow, setModalShow] = React.useState(false);
   const [show, setShow] = useState(false);
+
+  //handlers
   const handleClose = () => setShow(false);
 
   return (
