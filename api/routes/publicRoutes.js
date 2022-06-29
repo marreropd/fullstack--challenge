@@ -11,6 +11,7 @@ publicRouter.delete("/users/:id", userController.destroy);
 
 //movements
 publicRouter.get("/movements", movementController.index);
+publicRouter.get("/movementsbyquery", movementController.indexByQuery);
 publicRouter.post("/movements", movementController.store);
 publicRouter.get("/movements/:id", movementController.show);
 publicRouter.patch("/movements/:id", movementController.update);

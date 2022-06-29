@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     getMovements();
   }, []);
-
   async function getMovements() {
     try {
       const response = await axios({
@@ -24,11 +23,25 @@ function App() {
       console.log("Error: ", error);
     }
   }
+  async function getMovementsByQuery(query) {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:3000/movementsbyquery${query}`,
+      });
+      response.data && dispatch(movementActions.storeMovements(response.data));
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
 
   return (
     <div>
       <div>
-        <Header />
+        <Header
+          getMovements={getMovements}
+          getMovementsByQuery={getMovementsByQuery}
+        />
         <LastMovements />
       </div>
       <cite title="">

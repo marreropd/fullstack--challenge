@@ -1,10 +1,21 @@
 const { Movement } = require("../models");
 
 async function index(req, res) {
-  const movements = await Movement.findAll({ order: [["createdAt", "DESC"]] });
+  console.log("llame a index");
+  const movements = await Movement.findAll({
+    order: [["createdAt", "DESC"]],
+  });
   res.json(movements);
 }
-
+async function indexByQuery(req, res) {
+  console.log("llame a index By Query");
+  const query = req.query.type;
+  const movements = await Movement.findAll({
+    order: [["createdAt", "DESC"]],
+    where: { type: query },
+  });
+  res.json(movements);
+}
 async function show(req, res) {
   const id = req.params.id;
   const movement = await Movement.findAll({ where: { id: id } });
@@ -47,6 +58,7 @@ async function destroy(req, res) {
 
 module.exports = {
   index,
+  indexByQuery,
   show,
   store,
   update,
