@@ -17,6 +17,10 @@ module.exports = (sequelize, Model, DataTypes) => {
       amount: {
         type: DataTypes.INTEGER,
       },
+      category: {
+        type: DataTypes.STRING,
+        defaultValue: "Otros",
+      },
     },
     {
       sequelize,

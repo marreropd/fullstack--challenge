@@ -5,7 +5,7 @@ function GetBalance() {
   const store = useSelector((state) => state);
   const movements = store.movements;
 
-  const totalAmounts = [];
+  const totalAmounts = [0];
 
   for (let i = 0; i < movements.length; i++) {
     if (movements[i].type === "Ingreso") {
@@ -16,7 +16,7 @@ function GetBalance() {
   }
   const result = totalAmounts.reduce((acc, amount) => acc + amount);
 
-  return <p>$ {result}</p>;
+  return <p>$ {result && result}</p>;
 }
 
 export default GetBalance;

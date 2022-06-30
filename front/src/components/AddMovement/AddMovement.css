@@ -1,0 +1,11 @@
+.button-submit{
+    width: 10rem;
+    color: rgb(206, 191, 174);
+    background-color: rgb(10, 6, 2);
+}
+
+.button-submit:hover{
+    transition: 1s;
+    color: black;
+    background-color: rgb(206, 191, 174);
+}

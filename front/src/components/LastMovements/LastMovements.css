@@ -11,3 +11,7 @@
 .date{
     font-size: smaller;
 }
+
+.pointer{
+    cursor: pointer;
+}

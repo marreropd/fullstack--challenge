@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import GetBalance from "../GetBalance";
 import styles from "./Header.css";
 
@@ -24,33 +25,15 @@ function Header({ movements, getMovements, getMovementsByQuery }) {
         </div>
       </div>
       <div className="d-flex ms-auto container">
-        <h5
-          className="text-end text-white pointer"
-          onClick={() => {
-            getMovementsByQuery("?type=Ingreso");
-            SetTitle("Total de Ingresos: ");
-          }}
-        >
-          Ingresos
-        </h5>
-        <h5
-          className="text-end text-white mx-2 pointer"
-          onClick={() => {
-            getMovementsByQuery("?type=Egreso");
-            SetTitle("Total de Egresos: ");
-          }}
-        >
-          Egresos
-        </h5>
-        <h5
-          className="text-end text-white pointer"
-          onClick={() => {
-            getMovements();
-            SetTitle("Balance: ");
-          }}
-        >
+        <Link to={"/"} className="text-end QuerysTitles">
           Ultimos Movimientos
-        </h5>
+        </Link>
+        <Link to="/incomes" className="text-end mx-3 QuerysTitles">
+          Ingresos
+        </Link>
+        <Link to="/outcomes" className="text-end  QuerysTitles">
+          Egresos
+        </Link>
       </div>
     </div>
   );

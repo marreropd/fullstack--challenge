@@ -1,34 +1,49 @@
 import axios from "axios";
 import React from "react";
-import { Modal } from "react-bootstrap";
+import { useEffect } from "react";
 import { useSelector, connect, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import movementActions from "../../redux/movementActions";
-import styles from "./AddMovement.css";
+import Header from "../Header/Header";
 
-function AddMovement(props) {
+function EditMovement(props) {
   const store = useSelector((state) => state);
   const [modalShow, setModalShow] = React.useState(false);
+  const [dbData, setDbData] = React.useState([{}]);
 
   const dispatch = useDispatch();
+  const movementId = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    getMovementById();
+  }, []);
+
   const [data, setData] = React.useState({
-    type: "",
     amount: 0,
     decription: "",
-    category: "Otros",
   });
+
+  async function getMovementById() {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:3000/movements/${movementId.id}`,
+      });
+      response && setDbData(response.data);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios({
-        method: "POST",
-        url: "http://localhost:3000/movements",
+        method: "PATCH",
+        url: `http://localhost:3000/movements/${movementId.id}`,
         data: data,
       });
-      (await response.data) && dispatch(movementActions.create(response.data));
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -44,42 +59,16 @@ function AddMovement(props) {
 
   return (
     <div>
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Nuevo Movimiento
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Header />{" "}
+      {dbData && (
+        <div className="container shadow mt-3">
           <form onSubmit={(e) => handleSubmit(e)}>
-            <div className="mb-3">
-              <label htmlFor="select" className="form-label">
-                Tipo de Movimiento
-              </label>
-              <select
-                id="select"
-                className="form-select"
-                aria-label="Default select example"
-                name="type"
-                onChange={handleInputChange}
-              >
-                <option value="" defaultChecked>
-                  Seleccionar
-                </option>
-                <option value="Ingreso">Ingreso</option>
-                <option value="Egreso">Egreso</option>
-              </select>
-            </div>
             <div className="mb-3">
               <label htmlFor="description" className="form-label">
                 Descripción del Movimiento
               </label>
               <input
+                defaultValue={dbData[0].description}
                 type="text"
                 className="form-control"
                 id="description"
@@ -88,23 +77,11 @@ function AddMovement(props) {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="category" className="form-label">
-                Concepto/Categoria del Movimiento
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="category"
-                defaultValue={"Otros"}
-                name="category"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="mb-3">
               <label htmlFor="amount" className="form-label">
                 Monto en $
               </label>
               <input
+                defaultValue={dbData[0].amount}
                 type="number"
                 className="form-control"
                 id="amount"
@@ -116,22 +93,24 @@ function AddMovement(props) {
               Submit
             </button>
           </form>
-
-          <div>
-            <div className="shadow p-3  rounded">
-              <div className="d-flex align-items-center">
+          <div className="mb-3 py-3">
+            <div className="shadow border p-3 p-2">
+              <div className="d-flex align-items-center p-3">
                 <div className="d-flex flex-column">
                   <span className="h3 mb-0">${data.amount} </span>
                   <span className="">{data.description}</span>
                 </div>
-                <div className="ms-auto px-5">{data.type}</div>
+                <div className="ms-auto px-5">
+                  tipo: {dbData && dbData[0].type} ref:{" "}
+                  {movementId && movementId.id}
+                </div>
               </div>
             </div>
           </div>
-        </Modal.Body>
-      </Modal>
+        </div>
+      )}
     </div>
   );
 }
 
-export default connect(null, { movementActions })(AddMovement);
+export default EditMovement;

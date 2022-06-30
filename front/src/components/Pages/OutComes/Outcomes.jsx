@@ -1,29 +1,33 @@
-import styles from "./LastMovements.css";
-import React, { useState } from "react";
-import { format } from "date-fns";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
-import AddMovement from "../AddMovement/AddMovement";
-import ActionBotton from "../ActionBotton/ActionBotton";
-import EditMovement from "../EditMovement/EditMovement";
-import { Link } from "react-router-dom";
+import Header from "../../Header/Header";
+import { format } from "date-fns";
 
-function LastMovements({ setMovements, getMovements }) {
-  const store = useSelector((state) => state);
-  const movements = store.movements;
+function Outcomes() {
+  const [outcomes, setOutcomes] = useState([]);
+  useEffect(() => {
+    getMovementsByQuery();
+  }, []);
 
-  //modal states
-  const [modalShow, setModalShow] = React.useState(false);
-  const [show, setShow] = useState(false);
-
-  //handlers
-  const handleClose = () => setShow(false);
-
+  async function getMovementsByQuery() {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:3000/movementsbyquery?type=Egreso`,
+      });
+      response.data && setOutcomes(response.data);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
   return (
-    <>
-      {movements && (
+    <div>
+      <Header />
+      {outcomes && (
         <div className="container">
-          {movements.map((movement, i) => (
+          {outcomes.map((movement, i) => (
             <div key={i + Math.random}>
               <div
                 className={
@@ -47,12 +51,7 @@ function LastMovements({ setMovements, getMovements }) {
                   </div>
 
                   <span className="date ms-auto align-self-end">
-                    <Link
-                      to={`/edit/${movement.id}`}
-                      className="text-dark me-2"
-                    >
-                      <i class="bi bi-pencil-square fs-3 pointer"></i>
-                    </Link>
+                    <div className="ms-auto"></div>
                     {format(
                       new Date(movement.createdAt),
                       "yyyy/MM/dd kk:mm:ss"
@@ -63,16 +62,10 @@ function LastMovements({ setMovements, getMovements }) {
               </div>
             </div>
           ))}
-
-          <div show={modalShow} onClick={() => setModalShow(true)}>
-            <ActionBotton />
-          </div>
-
-          <AddMovement show={modalShow} onHide={() => setModalShow(false)} />
         </div>
       )}{" "}
-    </>
+    </div>
   );
 }
 
-export default LastMovements;
+export default Outcomes;
