@@ -34,9 +34,9 @@ async function store(req, res) {
 async function update(req, res) {
   console.log(req.params.id);
   const id = req.params.id;
-  const { amount, type, description } = req.body;
+  const { amount, type, description, category } = req.body;
   const movement = await Movement.update(
-    { amount: amount, description: description, type: type },
+    { amount: amount, description: description, type: type, category: category },
     {
       where: {
         id: id,

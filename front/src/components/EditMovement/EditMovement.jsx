@@ -22,6 +22,7 @@ function EditMovement(props) {
   const [data, setData] = React.useState({
     amount: 0,
     decription: "",
+    category: "",
   });
 
   async function getMovementById() {
@@ -44,6 +45,7 @@ function EditMovement(props) {
         url: `http://localhost:3000/movements/${movementId.id}`,
         data: data,
       });
+      console.log(data);
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -73,6 +75,19 @@ function EditMovement(props) {
                 className="form-control"
                 id="description"
                 name="description"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="category" className="form-label">
+                Concepto/Categoria del Movimiento
+              </label>
+              <input
+                defaultValue={dbData[0].category}
+                type="text"
+                className="form-control"
+                id="category"
+                name="category"
                 onChange={handleInputChange}
               />
             </div>
