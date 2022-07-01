@@ -1,3 +1,5 @@
+const bcrypt = require("bcryptjs");
+
 module.exports = (sequelize, Model, DataTypes) => {
   class User extends Model {}
 
@@ -8,7 +10,7 @@ module.exports = (sequelize, Model, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      email: {
         type: DataTypes.STRING,
       },
       password: {
