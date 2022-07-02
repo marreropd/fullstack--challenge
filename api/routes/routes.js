@@ -13,7 +13,7 @@ Router.get("/users/:id", verifyToken, userController.show);
 Router.delete("/users/:id", verifyToken, userController.destroy);
 
 //movements
-Router.get("/movements", verifyToken, movementController.index);
+Router.get("/movements", movementController.index);
 Router.get("/movementsbyquery", verifyToken, movementController.indexByQuery);
 Router.post("/movements", verifyToken, movementController.store);
 Router.get("/movements/:id", verifyToken, movementController.show);
