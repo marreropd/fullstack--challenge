@@ -12,6 +12,7 @@ async function show(req, res) {
 }
 
 async function store(req, res) {
+  console.log("store");
   const { name, password } = req.body;
   const user = await User.create({
     name: name,
