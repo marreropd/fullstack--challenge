@@ -1,22 +1,26 @@
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import movementActions from "../../../redux/movementActions";
 import Header from "../../Header/Header";
 import LastMovements from "../../LastMovements/LastMovements";
+import Login from "../../Login";
 
 function Home() {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
+
   useEffect(() => {
     getMovements();
   }, []);
+
   async function getMovements() {
     try {
       const response = await axios({
         method: "GET",
         url: `http://localhost:3000/movements`,
+        headers: { Authorization: `Bearer ${store.user.token}` },
       });
       response.data && dispatch(movementActions.storeMovements(response.data));
     } catch (error) {
@@ -39,7 +43,7 @@ function Home() {
       {" "}
       <div>
         <Header />
-        <LastMovements getMovements={getMovements} />
+        {store.user ? <LastMovements getMovements={getMovements} /> : <Login />}
       </div>
     </div>
   );

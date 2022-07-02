@@ -55,7 +55,8 @@ async function destroy(req, res) {
       id: id,
     },
   });
-  res.json({ message: "movimiento eliminado" });
+  const deletedMovement = await Movement.findAll({ where: { id: id } });
+  res.json(deletedMovement);
 }
 
 module.exports = {

@@ -1,23 +1,40 @@
 import styles from "./LastMovements.css";
 import React, { useState } from "react";
 import { format } from "date-fns";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import AddMovement from "../AddMovement/AddMovement";
 import ActionBotton from "../ActionBotton/ActionBotton";
 import EditMovement from "../EditMovement/EditMovement";
 import { Link } from "react-router-dom";
+import movementActions from "../../redux/movementActions";
+import axios from "axios";
 
 function LastMovements({ setMovements, getMovements }) {
   const store = useSelector((state) => state);
   const movements = store.movements;
-
   //modal states
   const [modalShow, setModalShow] = React.useState(false);
   const [show, setShow] = useState(false);
 
+  const dispatch = useDispatch();
+
   //handlers
   const handleClose = () => setShow(false);
+
+  const handleRemove = async (movement) => {
+    console.log(movement);
+    try {
+      const response = await axios({
+        method: "DELETE",
+        url: `http://localhost:3000/movements/${movement.id}`,
+        headers: { Authorization: `Bearer ${store.user.token}` },
+      });
+      dispatch(movementActions.remove(movement));
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
 
   return (
     <>
@@ -51,7 +68,15 @@ function LastMovements({ setMovements, getMovements }) {
                       to={`/edit/${movement.id}`}
                       className="text-dark me-2"
                     >
-                      <i class="bi bi-pencil-square fs-3 pointer"></i>
+                      <i className="bi bi-pencil-square fs-3 pointer"></i>
+                    </Link>
+                    <Link
+                      to={"/"}
+                      className="text-dark me-2"
+                      onClick={() => handleRemove(movement)}
+                    >
+                      {" "}
+                      <i className="bi bi-file-x fs-3 pointer"></i>
                     </Link>
                     {format(
                       new Date(movement.createdAt),

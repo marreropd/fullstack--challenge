@@ -1,14 +1,11 @@
 const express = require("express");
-const checkJwt = require("express-jwt");
 const Router = express.Router();
 const userController = require("../controllers/userController");
 const movementController = require("../controllers/movementController");
-
-// user
-
 const { getToken, verifyToken } = require("../controllers/tokenController");
 
-Router.post("/tokens", getToken);
+// user
+Router.post("/login", getToken);
 
 Router.get("/users", verifyToken, userController.index);
 Router.post("/users", verifyToken, userController.store);

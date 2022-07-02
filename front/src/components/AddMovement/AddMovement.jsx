@@ -27,6 +27,7 @@ function AddMovement(props) {
         method: "POST",
         url: "http://localhost:3000/movements",
         data: data,
+        headers: { Authorization: `Bearer ${store.user.token}` },
       });
       (await response.data) && dispatch(movementActions.create(response.data));
     } catch (error) {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
+import { render } from "react-dom";
 import { useSelector, connect, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import movementActions from "../../redux/movementActions";
@@ -17,7 +18,7 @@ function EditMovement(props) {
 
   useEffect(() => {
     getMovementById();
-  }, []);
+  }, [store.movements]);
 
   const [data, setData] = React.useState({
     amount: 0,
@@ -30,27 +31,28 @@ function EditMovement(props) {
       const response = await axios({
         method: "GET",
         url: `http://localhost:3000/movements/${movementId.id}`,
+        headers: { Authorization: `Bearer ${store.user.token}` },
       });
-      response && setDbData(response.data);
+      (await response) && setDbData(response.data);
     } catch (error) {
       console.log("Error: ", error);
     }
   }
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
       const response = await axios({
         method: "PATCH",
         url: `http://localhost:3000/movements/${movementId.id}`,
+        headers: { Authorization: `Bearer ${store.user.token}` },
         data: data,
       });
-      console.log(data);
     } catch (error) {
       console.log("Error: ", error);
     }
     navigate("/");
-  };
+  }
 
   const handleInputChange = (e) => {
     setData({
@@ -114,6 +116,7 @@ function EditMovement(props) {
                 <div className="d-flex flex-column">
                   <span className="h3 mb-0">${data.amount} </span>
                   <span className="">{data.description}</span>
+                  <span className="">categoria: {data.category}</span>
                 </div>
                 <div className="ms-auto px-5">
                   tipo: {dbData && dbData[0].type} ref:{" "}

@@ -4,7 +4,9 @@ const userActions = {
     console.log(data);
     return { type: "LOG_IN", payload: data };
   },
-  logOut: { type: "LOG_OUT" },
+  logOut: function () {
+    return { type: "LOG_OUT" };
+  },
 };
 
 export default userActions;

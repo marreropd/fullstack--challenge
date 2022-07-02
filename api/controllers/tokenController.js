@@ -9,7 +9,8 @@ async function getToken(req, res) {
     res.json({ token: token });
   });
 }
-// Authorization: Bearer <token>
+
+// middle
 function verifyToken(req, res, next) {
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {

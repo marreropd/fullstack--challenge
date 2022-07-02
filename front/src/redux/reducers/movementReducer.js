@@ -6,15 +6,11 @@ function movementReducer(state = [], action) {
     case "CREATE":
       return [action.payload, ...state];
     case "REMOVE":
-      break;
+      console.log(action.payload.id);
+      return state.filter((item) => item.id !== action.payload.id);
+
     case "UPDATE":
-      return update(state, {
-        movements: {
-          1: {
-            text: { $set: action.payload },
-          },
-        },
-      });
+      return state;
     default:
       return state;
   }
