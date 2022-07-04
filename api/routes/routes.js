@@ -15,7 +15,7 @@ Router.delete("/users/:id", verifyToken, userController.destroy);
 //movements
 Router.get("/movements", movementController.index);
 Router.get("/movementsbyquery", verifyToken, movementController.indexByQuery);
-Router.post("/movements", verifyToken, movementController.store);
+Router.post("/movements", movementController.store);
 Router.get("/movements/:id", verifyToken, movementController.show);
 Router.patch("/movements/:id", verifyToken, movementController.update);
 Router.delete("/movements/:id", verifyToken, movementController.destroy);
