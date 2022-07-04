@@ -12,7 +12,7 @@ async function getToken(req, res) {
     },
     process.env.TOKEN_SECRET,
     (token) => {
-      res.json({ token });
+      res.json({ token: JSON.stringify(token) });
     },
   );
 }
