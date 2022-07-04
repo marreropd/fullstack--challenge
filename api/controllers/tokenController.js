@@ -12,8 +12,6 @@ async function getToken(req, res) {
       res.json({ token: token });
     },
   );
-
-  res.json(accessToken);
 }
 
 // middle
