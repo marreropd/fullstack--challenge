@@ -7,7 +7,7 @@ const { getToken, verifyToken } = require("../controllers/tokenController");
 // user
 Router.post("/login", getToken);
 
-Router.get("/users", userController.index);
+Router.get("/users", verifyToken, userController.index);
 Router.post("/users", userController.store);
 Router.get("/users/:id", verifyToken, userController.show);
 Router.delete("/users/:id", verifyToken, userController.destroy);
