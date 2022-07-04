@@ -8,8 +8,8 @@ async function getToken(req, res) {
   const token = jwt.sign({ user: user[0] }, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
     return token;
   });
-  res.json(console.log(token));
-  res.json(token);
+
+  res.json({ token });
 }
 
 // middle
