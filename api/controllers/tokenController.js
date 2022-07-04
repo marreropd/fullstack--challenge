@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 async function getToken(req, res) {
   const user = await User.findAll({ where: { email: req.body.email } });
 
-  const token = await jwt.sign({ user: user[0] }, process.env.ACCESS_TOKEN_SECRET);
-  res.status(200).send({ token: token });
+  const token = jwt.sign({ user: user[0] }, process.env.ACCESS_TOKEN_SECRET);
+  res.status(200).json({ token: token });
 }
 
 // middle
