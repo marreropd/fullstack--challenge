@@ -6,9 +6,8 @@ async function getToken(req, res) {
   const user = await User.findAll({ where: { email: req.body.email } });
 
   try {
-    jwt.sign({ user: user[0].email }, process.env.ACCESS_TOKEN_SECRET, (token) => {
-      res.json({ token: token });
-    });
+    const token = await jwt.sign({ user: user[0].email }, process.env.ACCESS_TOKEN_SECRET);
+    res.json({ token });
   } catch (error) {
     res.json(error);
   }
