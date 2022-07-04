@@ -10,11 +10,9 @@ async function getToken(req, res) {
       email: user[0].email,
       password: user[0].password,
     },
-    process.env.TOKEN_SECRET,
-    (token) => {
-      res.json({ token: JSON.stringify(token) });
-    },
+    process.env.ACCESS_TOKEN_SECRET,
   );
+  res.json({ token });
 }
 
 // middle
