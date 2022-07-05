@@ -28,20 +28,28 @@ function Login() {
     });
   };
 <<<<<<< HEAD
+<<<<<<< HEAD
   console.log(process.env.ApiURL);
 =======
 
 >>>>>>> parent of 63a8ad3 (adding process.env ApiUrl)
+=======
+  const url = `${process.env.ApiURL}/login`;
+>>>>>>> parent of 4c67131 (update)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios({
         method: "POST",
 <<<<<<< HEAD
+<<<<<<< HEAD
         url: `${process.env.ApiURL}/login`,
 =======
         url: `https://api-piggy.vercel.app/login`,
 >>>>>>> parent of 63a8ad3 (adding process.env ApiUrl)
+=======
+        url: url,
+>>>>>>> parent of 4c67131 (update)
         data,
       });
 
