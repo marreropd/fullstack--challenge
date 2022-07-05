@@ -1,3 +1,5 @@
+import Header from "./components/Header/Header";
+import LastMovements from "./components/LastMovements/LastMovements";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
