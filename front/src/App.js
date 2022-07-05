@@ -22,7 +22,7 @@ function App() {
         <cite title="container">
           {" "}
           <a
-            className="pinter text-dark"
+            className="pinter text-dark fs-6"
             rel="noreferrer"
             href="https://www.linkedin.com/in/marrero-pablo/"
             target="_blank"
