@@ -27,23 +27,13 @@ function Home() {
       console.log("Error: ", error);
     }
   }
-  async function getMovementsByQuery(query) {
-    try {
-      const response = await axios({
-        method: "GET",
-        url: `https://api-piggy.vercel.app/movementsbyquery${query}`,
-      });
-      response.data && dispatch(movementActions.storeMovements(response.data));
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  }
+
   return (
     <div>
       {" "}
       <div>
         <Header />
-        {store.user ? "Loading..." && <LastMovements /> : <Login />}
+        {store.user ? "Cargando... " && <LastMovements /> : <Login />}
       </div>
     </div>
   );

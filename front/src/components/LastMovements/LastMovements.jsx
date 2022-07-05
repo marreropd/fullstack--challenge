@@ -13,6 +13,10 @@ import axios from "axios";
 function LastMovements({ setMovements, getMovements }) {
   const store = useSelector((state) => state);
   const movements = store.movements;
+  useEffect(() => {
+    getMovements();
+  }, []);
+
   //modal states
   const [modalShow, setModalShow] = React.useState(false);
   const [show, setShow] = useState(false);
