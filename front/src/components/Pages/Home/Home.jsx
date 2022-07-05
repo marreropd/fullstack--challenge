@@ -13,10 +13,7 @@ function Home() {
       {" "}
       <div>
         <Header />
-        <div className="container">
-          <h3>Ingresa para ver tus movimientos</h3>
-          <Login />
-        </div>
+        <Login />
       </div>
     </div>
   );
