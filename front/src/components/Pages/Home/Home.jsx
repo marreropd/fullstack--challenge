@@ -8,33 +8,15 @@ import LastMovements from "../../LastMovements/LastMovements";
 import Login from "../../Login";
 
 function Home() {
-  const store = useSelector((state) => state);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getMovements();
-  }, []);
-
-  async function getMovements() {
-    try {
-      const response = await axios({
-        method: "GET",
-        url: `https://api-piggy.vercel.app/movements`,
-        headers: { Authorization: `Bearer ${store.user.token}` },
-      });
-      (await response.data) &&
-        dispatch(movementActions.storeMovements(response.data));
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  }
-
   return (
     <div>
       {" "}
       <div>
         <Header />
-        <LastMovements />
+        <div>
+          <h3>Ingresa para ver tus movimientos</h3>
+          <Login />
+        </div>
       </div>
     </div>
   );

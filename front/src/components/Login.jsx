@@ -11,7 +11,7 @@ function Login() {
 
   useEffect(() => {
     if (user && user.token) {
-      navigate("/incomes");
+      navigate("/last-movements");
     }
   });
 
