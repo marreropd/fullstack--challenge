@@ -7,11 +7,9 @@ import Login from "../../Login";
 function Incomes() {
   const store = useSelector((state) => state);
   const [inComes, setInComes] = useState([]);
-
   useEffect(() => {
     getMovementsByQuery();
   }, []);
-
   async function getMovementsByQuery() {
     try {
       const response = await axios({
