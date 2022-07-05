@@ -13,6 +13,7 @@ import Login from "./components/Login";
 
 function App() {
   const store = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LastMovements />} />
         <Route path="/outcomes" element={<Outcomes />} />
         <Route path="/incomes" element={<Incomes />} />
         <Route path="/edit/:id" element={<EditMovement />} />

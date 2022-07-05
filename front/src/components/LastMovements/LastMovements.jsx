@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import movementActions from "../../redux/movementActions";
 import axios from "axios";
 
-function LastMovements({ setMovements, getMovements }) {
+function LastMovements() {
   const store = useSelector((state) => state);
   const movements = store.movements;
   //modal states
