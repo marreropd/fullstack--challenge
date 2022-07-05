@@ -9,6 +9,7 @@ import Login from "../../Login";
 
 function Home() {
   const store = useSelector((state) => state);
+  const movements = store.movements;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,11 +31,16 @@ function Home() {
 
   return (
     <div>
-      {" "}
-      <div>
-        <Header />
-        {store.user ? <LastMovements getMovements={getMovements} /> : <Login />}
-      </div>
+      {movements && (
+        <div>
+          <Header />
+          {store.user ? (
+            <LastMovements getMovements={getMovements} />
+          ) : (
+            <Login />
+          )}
+        </div>
+      )}
     </div>
   );
 }
