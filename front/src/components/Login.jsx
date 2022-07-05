@@ -27,13 +27,13 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
-
+  const url = `${process.env.ApiURL}/login`;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios({
         method: "POST",
-        url: `https://api-piggy.vercel.app/login`,
+        url: url,
         data,
       });
 

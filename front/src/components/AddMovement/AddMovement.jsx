@@ -25,7 +25,7 @@ function AddMovement(props) {
     try {
       const response = await axios({
         method: "POST",
-        url: "https://api-piggy.vercel.app/movements",
+        url: `${process.env}/movements`,
         data: data,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });

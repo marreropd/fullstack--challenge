@@ -14,7 +14,7 @@ function Incomes() {
     try {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:3000/movementsbyquery?type=Ingreso`,
+        url: `${process.env}/movementsbyquery?type=Ingreso`,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });
       response.data && setInComes(response.data);
