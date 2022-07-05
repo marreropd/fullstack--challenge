@@ -19,10 +19,11 @@ function App() {
         <Route path="/login" element={<Login />} />
       </Routes>
       <div className="container">
-        <cite title="container">
+        <cite>
           {" "}
           <a
-            className="pinter text-dark fs-6"
+            id="cite"
+            className="text-dark"
             rel="noreferrer"
             href="https://www.linkedin.com/in/marrero-pablo/"
             target="_blank"
