@@ -13,15 +13,29 @@ import axios from "axios";
 function LastMovements({ setMovements, getMovements }) {
   const store = useSelector((state) => state);
   const movements = store.movements;
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     getMovements();
   }, []);
 
+  async function getMovements() {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `https://api-piggy.vercel.app/movements`,
+        headers: { Authorization: `Bearer ${store.user.token}` },
+      });
+      response.data && dispatch(movementActions.storeMovements(response.data));
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
   //modal states
   const [modalShow, setModalShow] = React.useState(false);
   const [show, setShow] = useState(false);
-
-  const dispatch = useDispatch();
 
   //handlers
   const handleClose = () => setShow(false);
