@@ -46,7 +46,7 @@ function Login() {
   };
 
   return (
-    <div className="container p-5">
+    <div className="container py-5">
       <h2>Ingresar credenciales para ver movimientos</h2>
       <form className="row g-3" onSubmit={(e) => handleSubmit(e)}>
         <div className="col-auto">
