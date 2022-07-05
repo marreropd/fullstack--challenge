@@ -19,7 +19,7 @@ function Home() {
     try {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:3000/movements`,
+        url: `https://api-piggy.vercel.app/movements`,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });
       response.data && dispatch(movementActions.storeMovements(response.data));
@@ -31,7 +31,7 @@ function Home() {
     try {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:3000/movementsbyquery${query}`,
+        url: `https://api-piggy.vercel.app/movementsbyquery${query}`,
       });
       response.data && dispatch(movementActions.storeMovements(response.data));
     } catch (error) {

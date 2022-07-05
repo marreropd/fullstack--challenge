@@ -44,7 +44,7 @@ function EditMovement(props) {
     try {
       const response = await axios({
         method: "PATCH",
-        url: `http://localhost:3000/movements/${movementId.id}`,
+        url: `https://api-piggy.vercel.app/movements/${movementId.id}`,
         headers: { Authorization: `Bearer ${store.user.token}` },
         data: data,
       });

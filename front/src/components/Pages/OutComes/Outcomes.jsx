@@ -18,7 +18,7 @@ function Outcomes() {
     try {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:3000/movementsbyquery?type=Egreso`,
+        url: `https://api-piggy.vercel.app/movementsbyquery?type=Egreso`,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });
       response.data && setOutcomes(response.data);
