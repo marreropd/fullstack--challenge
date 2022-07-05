@@ -9,6 +9,7 @@ import EditMovement from "../EditMovement/EditMovement";
 import { Link } from "react-router-dom";
 import movementActions from "../../redux/movementActions";
 import axios from "axios";
+import Header from "../Header/Header";
 
 function LastMovements() {
   const store = useSelector((state) => state);
@@ -56,6 +57,7 @@ function LastMovements() {
 
   return (
     <>
+      <Header />
       {movements && (
         <div className="container">
           {movements.map((movement, i) => (

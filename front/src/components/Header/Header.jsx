@@ -46,7 +46,7 @@ function Header({ movements, getMovements, getMovementsByQuery }) {
       </div>
 
       <div className="d-flex ms-auto container">
-        <Link to={"/"} className="text-end QuerysTitles">
+        <Link to={"/last-movements"} className="text-end QuerysTitles">
           Ultimos Movimientos
         </Link>
         <Link to="/incomes" className="text-end mx-3 QuerysTitles">
