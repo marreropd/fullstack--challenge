@@ -43,7 +43,7 @@ function Home() {
       {" "}
       <div>
         <Header />
-        {store.user ? <LastMovements /> : <Login />}
+        {store.user ? "Loading..." && <LastMovements /> : <Login />}
       </div>
     </div>
   );
