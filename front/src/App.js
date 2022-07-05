@@ -1,11 +1,7 @@
-import Header from "./components/Header/Header";
-import LastMovements from "./components/LastMovements/LastMovements";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import movementActions from "./redux/movementActions";
-import Outcomes from "./components/Pages/OutComes/Outcomes";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Outcomes from "./components/Pages/OutComes/Outcomes";
+import LastMovements from "./components/LastMovements/LastMovements";
 import Home from "./components/Pages/Home/Home";
 import Incomes from "./components/Pages/Incomes/Incomes";
 import EditMovement from "./components/EditMovement/EditMovement";

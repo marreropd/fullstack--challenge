@@ -4,12 +4,15 @@ import Header from "../../Header/Header";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
 import Login from "../../Login";
+
 function Incomes() {
   const store = useSelector((state) => state);
   const [inComes, setInComes] = useState([]);
+
   useEffect(() => {
     getMovementsByQuery();
   }, []);
+
   async function getMovementsByQuery() {
     try {
       const response = await axios({
@@ -22,6 +25,7 @@ function Incomes() {
       console.log("Error: ", error);
     }
   }
+
   return (
     <div>
       <Header />

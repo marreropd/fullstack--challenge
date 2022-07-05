@@ -1,10 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
-import { render } from "react-dom";
 import { useSelector, connect, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import movementActions from "../../redux/movementActions";
 import Header from "../Header/Header";
 
 function EditMovement(props) {

@@ -1,16 +1,15 @@
-import styles from "./LastMovements.css";
-import React, { useState } from "react";
-import { format } from "date-fns";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+import movementActions from "../../redux/movementActions";
 import AddMovement from "../AddMovement/AddMovement";
 import ActionBotton from "../ActionBotton/ActionBotton";
-import EditMovement from "../EditMovement/EditMovement";
-import { Link } from "react-router-dom";
-import movementActions from "../../redux/movementActions";
-import axios from "axios";
 import Header from "../Header/Header";
 import Login from "../Login";
+import { format } from "date-fns";
+import styles from "./LastMovements.css";
 
 function LastMovements() {
   const store = useSelector((state) => state);
@@ -39,6 +38,7 @@ function LastMovements() {
       console.log("Error: ", error);
     }
   }
+
   //handlers
   const handleClose = () => setShow(false);
 
