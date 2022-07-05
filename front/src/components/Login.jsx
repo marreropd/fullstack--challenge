@@ -27,13 +27,13 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
-
+  console.log(process.env.ApiURL);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios({
         method: "POST",
-        url: `${process.env}/login`,
+        url: `${process.env.ApiURL}/login`,
         data,
       });
 
