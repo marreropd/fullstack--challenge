@@ -4,6 +4,7 @@ import Header from "../../Header/Header";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
 import Login from "../../Login";
+
 function Incomes() {
   const store = useSelector((state) => state);
   const [inComes, setInComes] = useState([]);
