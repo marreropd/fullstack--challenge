@@ -30,7 +30,7 @@ function Home() {
       {" "}
       <div>
         <Header />
-        {store.user ? <LastMovements /> : <Login />}
+        <LastMovements />
       </div>
     </div>
   );
