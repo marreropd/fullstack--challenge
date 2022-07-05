@@ -18,7 +18,7 @@ function Outcomes() {
     try {
       const response = await axios({
         method: "GET",
-        url: `${process.env}/movementsbyquery?type=Egreso`,
+        url: `http://localhost:3000/movementsbyquery?type=Egreso`,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });
       response.data && setOutcomes(response.data);

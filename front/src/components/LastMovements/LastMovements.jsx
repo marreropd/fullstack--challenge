@@ -27,7 +27,7 @@ function LastMovements({ setMovements, getMovements }) {
     try {
       const response = await axios({
         method: "DELETE",
-        url: `${process.env}/movements/${movement.id}`,
+        url: `https://api-piggy.vercel.app/movements/${movement.id}`,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });
       dispatch(movementActions.remove(movement));

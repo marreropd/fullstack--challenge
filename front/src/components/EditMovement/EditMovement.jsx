@@ -30,7 +30,7 @@ function EditMovement(props) {
     try {
       const response = await axios({
         method: "GET",
-        url: `${process.env}/movements${movementId.id}`,
+        url: `https://api-piggy.vercel.app/movements/${movementId.id}`,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });
       (await response) && setDbData(response.data);
@@ -44,7 +44,7 @@ function EditMovement(props) {
     try {
       const response = await axios({
         method: "PATCH",
-        url: `${process.env}/movements/${movementId.id}`,
+        url: `http://localhost:3000/movements/${movementId.id}`,
         headers: { Authorization: `Bearer ${store.user.token}` },
         data: data,
       });

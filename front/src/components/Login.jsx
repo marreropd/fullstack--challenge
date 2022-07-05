@@ -27,13 +27,21 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
+<<<<<<< HEAD
   console.log(process.env.ApiURL);
+=======
+
+>>>>>>> parent of 63a8ad3 (adding process.env ApiUrl)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios({
         method: "POST",
+<<<<<<< HEAD
         url: `${process.env.ApiURL}/login`,
+=======
+        url: `https://api-piggy.vercel.app/login`,
+>>>>>>> parent of 63a8ad3 (adding process.env ApiUrl)
         data,
       });
 
