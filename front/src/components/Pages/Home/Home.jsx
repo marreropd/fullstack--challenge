@@ -18,7 +18,8 @@ function Home() {
         url: `https://api-piggy.vercel.app/movements`,
         headers: { Authorization: `Bearer ${store.user.token}` },
       });
-      response.data && dispatch(movementActions.storeMovements(response.data));
+      (await response.data) &&
+        dispatch(movementActions.storeMovements(response.data));
     } catch (error) {
       console.log("Error: ", error);
     }

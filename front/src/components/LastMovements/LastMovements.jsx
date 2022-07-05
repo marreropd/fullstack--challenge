@@ -38,7 +38,7 @@ function LastMovements() {
 
   return (
     <>
-      {movements && (
+      {store.user && movements && (
         <div className="container">
           {movements.map((movement, i) => (
             <div key={i + Math.random}>
