@@ -8,10 +8,13 @@ import styles from "./Header.css";
 function Header({ movements, getMovements, getMovementsByQuery }) {
   const user = useSelector((state) => state.user);
   const [title, SetTitle] = useState("Balance: ");
+
   const dispatch = useDispatch();
+
   const handleClick = () => {
     dispatch(userActions.logOut());
   };
+
   return (
     <div className="bg-dark py-2 sticky-top">
       <div className="container d-flex justify-content-between">
